@@ -1,0 +1,15 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.calculator-body {
+    width: 500px;
+    background-color: black;
+}
+
+button {
+    min-width: 40px;
+    max-width: 100px;
+    background-color: grey;
+}
