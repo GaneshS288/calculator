@@ -4,25 +4,32 @@
 <head>
     <title>Calculator</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width = device-width, initial-scale =1.0">
     <script src="script.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
- <div class = "calculator-body">
+ <div class = "calculator-frame">
 
-    <div class="display"></div>
+<div class="calculator-body">
 
+    <div class="display">
+        <div class="math-expression">333331+222222</div>
+        <div class="result">3</div>
+    </div>
+
+<div class = "button-container" >
     <div class="column-container">
         <button class="clear">C</button>
         <button class="number">7</button>
         <button class="number">4</button>
         <button class="number">1</button>
-        <button class="number">**</button>
+        <button class="operator">**</button>
     </div>
 
     <div class="column-container">
-        <button class="operator">%</button>
+        <button class="delete">DEL</button>
         <button class="number">8</button>
         <button class="number">5</button>
         <button class="number">2</button>
@@ -30,7 +37,7 @@
     </div>
 
     <div class="column-container">
-        <button class="delete">DEL</button>
+        <button class="operator">%</button>
         <button class="number">9</button>
         <button class="number">6</button>
         <button class="number">3</button>
@@ -44,7 +51,12 @@
         <button class="operator">+</button>
         <button class="operator">=</button>
     </div>
- </div>   
+
+</div>
+
+</div>   
+
+</div>   
 
 </body>
 

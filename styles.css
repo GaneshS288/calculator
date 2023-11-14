@@ -1,15 +1,96 @@
 body {
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin: 0;
+    height: 100vh;
 }
 
+.calculator-frame {
+    border: solid slateblue 10px;
+    outline: solid 5px black;
+    border-radius: 10px;
+}
 .calculator-body {
-    width: 500px;
+    width: 320px;
+    height: 550px;
+    background-color: #212d40;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 10px;
+    border: solid 3px #11151C;
+    gap: 20px;
+}
+
+.calculator-body .button-container {
+    display: flex;
+    gap: 5px;
+}
+
+.column-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.display {
+    color:aliceblue;
     background-color: black;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    padding-right: 15px;
+    border-radius: 10px;
+}
+
+.display div {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 2.5em;
 }
 
 button {
-    min-width: 40px;
-    max-width: 100px;
-    background-color: grey;
+    border-radius: 50%;
+    width: 75px;
+    aspect-ratio: 1/1;
+    background-color: black;
+    font-size: 1.5em;
+    border: solid 2px rgb(0, 0, 0);
+}
+
+button:active {
+    border: solid 2px white;
+}
+
+.result {
+    color: #364156;
+}
+
+.number {
+    color: white; 
+}
+
+.delete {
+    color: #D66853;
+}
+
+.operator {
+    color: skyblue;
+}
+
+.clear {
+    background-color: #D66853;
+    color: white;
+    border: solid 2px #D66853;
+}
+
+.clear:active {
+    border: solid 2px white;
+}
+
+.decimal {
+    color: white;
 }
