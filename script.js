@@ -20,6 +20,15 @@ decimalBtn.addEventListener("click", insertDecimal)
 
 equalBtn.addEventListener("click", equalOperation)
 
+clearBtn.addEventListener('click', () => {
+    num1 = '';
+    num2 = '';
+    operator = '';
+
+    printExpression();
+    result.textContent = '';
+})
+
 function printExpression() {
     mathExpression.textContent = `${num1}${operator}${num2}`
 }
@@ -48,16 +57,19 @@ function assignNumValues(event) {
     else if (operator.length && num2 == '0') {
         num2 = num
         printExpression()
+        printResult();
     }
 
     else if (operator.length && num2.includes('.') && num2.length < 7) {
         num2 += num;
         printExpression();
+        printResult();
     }
 
     else if (operator.length && num2.length < 6) {
         num2 += num
         printExpression();
+        printResult();
     }
 }
 
@@ -88,11 +100,13 @@ function insertDecimal() {
     else if (operator.length && !num2.includes('.') && !num2.length) {
         num2 += '0.'
         printExpression()
+        printResult()
     }
     
     else if (operator.length && !num2.includes('.')) {
         num2 += '.'
         printExpression()
+        printResult()
     }
 }
 
@@ -102,7 +116,7 @@ function equalOperation() {
     let num = operate(num1, operator, num2);
     
     if (typeof num === "number" && !isNaN(num) && num2.length) {
-        printResult();
+        result.textContent = '';
        
         num1 = num.toString();
         num2 = ''
