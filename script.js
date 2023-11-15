@@ -23,8 +23,12 @@ function printExpression() {
 
 function assignNumValues(event) {
     let num = event.target.textContent;
-    
-    if (!operator.length && num1.includes('.') && num1.length < 7) {
+    if (!operator.length && num1 == '0') {
+        num1 = num
+        printExpression()
+    }
+
+    else if (!operator.length && num1.includes('.') && num1.length < 7) {
         num1 += num;
         printExpression();
     }
@@ -34,6 +38,11 @@ function assignNumValues(event) {
         printExpression();
     } 
 
+    else if (operator.length && num2 == '0') {
+        num2 = num
+        printExpression()
+    }
+    
     else if (operator.length && num2.includes('.') && num2.length < 7) {
         num2 += num;
         printExpression();
