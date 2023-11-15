@@ -3,6 +3,7 @@ const result = document.querySelector('.result');
 
 const numberBtns = document.querySelectorAll('.number');
 const operatorBtns = document.querySelectorAll('.operator');
+const equalBtn = document.querySelector('.equal');
 const delBtn = document.querySelector('.delete');
 const clearBtn = document.querySelector('.clear');
 const decimalBtn = document.querySelector('.decimal');
@@ -15,10 +16,16 @@ operatorBtns.forEach((button) => {
     button.addEventListener("click", assignOperator)
 })
 
-decimalBtn.addEventListener('click', insertDecimal)
+decimalBtn.addEventListener("click", insertDecimal)
+
+equalBtn.addEventListener("click", equalOperation)
 
 function printExpression() {
     mathExpression.textContent = `${num1}${operator}${num2}`
+}
+
+function printResult() {
+    result.textContent = operate(num1, operator, num2);
 }
 
 function assignNumValues(event) {
@@ -42,7 +49,7 @@ function assignNumValues(event) {
         num2 = num
         printExpression()
     }
-    
+
     else if (operator.length && num2.includes('.') && num2.length < 7) {
         num2 += num;
         printExpression();
@@ -63,7 +70,7 @@ function assignOperator(event) {
     }
 
     else if (num1.length && num2.length) {
-        operate(num1, operator, num2)
+        equalOperation()
     }
 }
 
@@ -89,24 +96,40 @@ function insertDecimal() {
     }
 }
 
+//evaluate the mathematical expression and print it. Then assign the result to num1 and reset operator and num2 variables
+
+function equalOperation() {
+    let num = operate(num1, operator, num2);
+    
+    if (typeof num === "number" && !isNaN(num) && num2.length) {
+        printResult();
+       
+        num1 = num.toString();
+        num2 = ''
+        operator = ''
+
+        printExpression()
+    }
+}
+
 let num1 = '';
 let num2 = '';
 let operator = '';
 
 function add(num1, num2) {
-    return num1 + num2;
+    return Number(num1) + Number(num2);
 }
 
 function subtract(num1, num2) {
-    return num1 - num2;
+    return Number(num1) - Number(num2);
 }
 
 function multiply(num1, num2) {
-    return num1 * num2;
+    return Number(num1) * Number(num2);
 }
 
 function divide(num1, num2) {
-    return num1 / num2;
+    return Number(num1) / Number(num2);
 }
 
 function operate(num1, operator, num2) {
@@ -133,7 +156,6 @@ function operate(num1, operator, num2) {
         default:
             return "error";        
     }
-    console.log(result)
-    return result;
+    return result = result.toFixed(3) * 10/10;
 }
 

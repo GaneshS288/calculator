@@ -77,7 +77,7 @@ button:active {
     color: #D66853;
 }
 
-.operator {
+.operator, .equal {
     color: skyblue;
 }
 
