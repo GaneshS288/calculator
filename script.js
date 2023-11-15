@@ -5,6 +5,7 @@ const numberBtns = document.querySelectorAll('.number');
 const operatorBtns = document.querySelectorAll('.operator');
 const delBtn = document.querySelector('.delete');
 const clearBtn = document.querySelector('.clear');
+const decimalBtn = document.querySelector('.decimal');
 
 numberBtns.forEach((button) => {
     button.addEventListener("click", assignNumValues)
@@ -13,6 +14,8 @@ numberBtns.forEach((button) => {
 operatorBtns.forEach((button) => {
     button.addEventListener("click", assignOperator)
 })
+
+decimalBtn.addEventListener('click', insertDecimal)
 
 function printExpression() {
     mathExpression.textContent = `${num1}${operator}${num2}`
@@ -52,6 +55,28 @@ function assignOperator(event) {
 
     else if (num1.length && num2.length) {
         operate(num1, operator, num2)
+    }
+}
+
+function insertDecimal() {
+    if (!operator.length && !num1.includes('.') && !num1.length) {
+        num1 += '0.'
+        printExpression();
+    }
+
+    else if (!operator.length && !num1.includes('.')) {
+        num1 += '.'
+        printExpression()
+    }
+
+    else if (operator.length && !num2.includes('.') && !num2.length) {
+        num2 += '0.'
+        printExpression()
+    }
+    
+    else if (operator.length && !num2.includes('.')) {
+        num2 += '.'
+        printExpression()
     }
 }
 
