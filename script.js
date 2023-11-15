@@ -1,6 +1,8 @@
+//calculator display reference
 const mathExpression = document.querySelector('.math-expression');
 const result = document.querySelector('.result');
 
+//button reference
 const numberBtns = document.querySelectorAll('.number');
 const operatorBtns = document.querySelectorAll('.operator');
 const equalBtn = document.querySelector('.equal');
@@ -20,6 +22,7 @@ decimalBtn.addEventListener("click", insertDecimal)
 
 equalBtn.addEventListener("click", equalOperation)
 
+//this clears all varibale values and resets the calulator display
 clearBtn.addEventListener('click', () => {
     num1 = '';
     num2 = '';
@@ -28,6 +31,8 @@ clearBtn.addEventListener('click', () => {
     printExpression();
     result.textContent = '';
 })
+
+delBtn.addEventListener('click', deleteChar)
 
 function printExpression() {
     mathExpression.textContent = `${num1}${operator}${num2}`
@@ -122,7 +127,38 @@ function equalOperation() {
         num2 = ''
         operator = ''
 
-        printExpression()
+        printExpression();
+    }
+}
+
+function deleteChar() {
+
+    if (!operator.length && num1.length === 1) {
+        num1 = num1.slice(0, -1)
+        printExpression();
+        result.textContent = '';
+    }
+
+    else if (!operator.length) {
+        num1 = num1.slice(0, -1)
+        printExpression();
+    }
+
+    else if (operator.length && !num2.length) {
+        operator = operator.slice(0, -1)
+        printExpression();
+    }
+
+    else if (num2.length > 1) {
+        num2 = num2.slice(0, -1)
+        printExpression();
+        printResult();
+    } 
+
+    else if (num2.length === 1) {
+        num2 = num2.slice(0, -1)
+        printExpression();
+        result.textContent = '';
     }
 }
 
@@ -146,6 +182,14 @@ function divide(num1, num2) {
     return Number(num1) / Number(num2);
 }
 
+function percentage(num1, num2) {
+    return (Number(num1) * Number(num2)) /100;
+}
+
+function exponent(num1, num2) {
+    return Number(num1) ** Number(num2);
+}
+
 function operate(num1, operator, num2) {
 
     let result;
@@ -167,9 +211,18 @@ function operate(num1, operator, num2) {
             result = divide(num1, num2);
         break;
 
+        case "%":
+            result = percentage(num1, num2);
+        break;
+
+        case "**":
+            result = exponent(num1, num2);    
+        break;
+
         default:
             return "error";        
     }
-    return result = result.toFixed(3) * 10/10;
+
+    return parseFloat(result.toFixed(6))
 }
 
