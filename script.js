@@ -39,7 +39,13 @@ function printExpression() {
 }
 
 function printResult() {
+    if(Number(num2) === 0) {
+        result.textContent = "can't divide by 0";
+    }
+
+    else {
     result.textContent = operate(num1, operator, num2);
+    }
 }
 
 function assignNumValues(event) {
@@ -86,6 +92,10 @@ function assignOperator(event) {
         printExpression();
     }
 
+    else if (Number(num2) === 0) {
+        return ;
+    }
+    
     else if (num1.length && num2.length) {
         equalOperation()
     }
@@ -119,8 +129,11 @@ function insertDecimal() {
 
 function equalOperation() {
     let num = operate(num1, operator, num2);
-    
-    if (typeof num === "number" && !isNaN(num) && num2.length) {
+    if (Number(num2) === 0) {
+        return ;
+    }
+
+    else if (typeof num === "number" && !isNaN(num) && num2.length) {
         result.textContent = '';
        
         num1 = num.toString();
@@ -179,7 +192,12 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
+    if (num1 == "0" || num1 == "0." && num2 == "0" || num2 == "0." ) { 
+        return 1;
+    }
+    else {
     return Number(num1) / Number(num2);
+    }
 }
 
 function percentage(num1, num2) {
@@ -223,6 +241,6 @@ function operate(num1, operator, num2) {
             return "error";        
     }
 
-    return parseFloat(result.toFixed(6))
+    return parseFloat(result.toFixed(5))
 }
 
